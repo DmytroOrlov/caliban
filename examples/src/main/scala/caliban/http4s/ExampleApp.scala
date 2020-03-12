@@ -138,8 +138,6 @@ object ExampleApp extends App with GenericSchema[Console with Clock] {
 
   case class Subscriptions(characterDeleted: ZStream[Console, Nothing, String])
 
-  type ExampleTask[A] = RIO[Console with Clock, A]
-
   implicit val roleSchema = gen[Role]
   implicit val characterSchema = gen[Character]
   implicit val characterArgsSchema = gen[CharacterArgs]

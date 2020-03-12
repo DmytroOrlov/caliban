@@ -215,8 +215,13 @@ lazy val examples = project
   .settings(skip in publish := true)
   .settings(
     libraryDependencies ++= Seq(
-      "com.softwaremill.sttp.client" %% "async-http-client-backend-zio" % sttpVersion
-    )
+      "com.softwaremill.sttp.client" %% "async-http-client-backend-zio" % sttpVersion,
+      "io.7mind.izumi" %% "distage-framework" % "0.10.2-M8",
+      "dev.zio" %% "zio-macros-core" % "0.6.3-M1",
+      compilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1"),
+      compilerPlugin(("org.scalamacros" % "paradise" % "2.1.1").cross(CrossVersion.full)),
+    ),
+    scalacOptions += "-language:reflectiveCalls"
   )
   .dependsOn(akkaHttp, http4s, catsInteropJVM, finch, monixInterop, clientJVM)
 
